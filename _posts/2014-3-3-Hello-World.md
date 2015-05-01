@@ -1,10 +1,9 @@
 ---
 layout: post
-title: You're up and running!
+title: Jekyll?
 ---
 
-Next you can update your site name, avatar and other options using the _config.yml file in the root of your repository (shown below).
+[http://jekyllrb.com](Jekyll) is a static-site generator - great for fast websites that can still do some of the fancy stuff CMSs do. So I figured I would try it out, because why not? It's a great excuse to learn a new technology and get more familiar with markdown.
 
-![_config.yml]({{ site.baseurl }}/images/config.png)
+![I'm excited, are you?](http://media.giphy.com/media/3SOK4Vm1TWHV6/giphy.gif)
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
