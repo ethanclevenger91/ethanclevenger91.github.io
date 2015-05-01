@@ -15,7 +15,7 @@ Open up your `.bashrc` file and create an alias to get to your posts directory q
 
 I hate to create a new file for each post manually since it does follow a certain formula, so you can also set up a bash function for this (also in `.bashrc`)
 
-```shell
+```bash
 function njp() {
 	mydate=`date +%Y-%m-%d`
 	post=${1// /-}
@@ -25,7 +25,8 @@ function njp() {
 	layout: post
 	title: $1
 	---" > $filename
-	}```
+	}
+```
 
 Let's break that down line-by-line:
 1. Define a function. I chose `njp` for "new jekyll post"
@@ -37,7 +38,7 @@ Let's break that down line-by-line:
 
 Save this, open a bash prompt and enjoy automation:
 
-```shell
+```bash
 $ blog
 User@COM /q/wamp/ethanclevenger91.github.io/_posts (master)
 $ njp "Command Line - Creating Jekyll Posts"
