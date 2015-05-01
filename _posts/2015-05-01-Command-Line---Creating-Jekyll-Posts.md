@@ -1,6 +1,6 @@
 ---
-	layout: post
-	title: Command Line - Creating Jekyll Posts
+layout: post
+title: Command Line - Creating Jekyll Posts
 ---
 
 GitHub works fine for a CMS, but I'd much rather do my work in my favorite IDE, and if I'm working locally, I may as well make it simple. Here are a couple snippets you might find valuable.
