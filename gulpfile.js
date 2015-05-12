@@ -34,10 +34,10 @@ var paths = {
 };
 
 var destPaths = {
-	scripts: 'build/js',
-	styles: 'build/css',
-	fonts: 'build/fonts',
-	images: 'build/images'
+	scripts: '_site/build/js',
+	styles: '_site/build/css',
+	fonts: '_site/build/fonts',
+	images: '_site/build/images'
 };
 
 // Error Handling
