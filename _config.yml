@@ -80,4 +80,3 @@ exclude:
     - images
     - js
     - sass
-    - build

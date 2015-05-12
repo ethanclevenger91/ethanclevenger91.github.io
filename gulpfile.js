@@ -34,10 +34,14 @@ var paths = {
 };
 
 var destPaths = {
-	scripts: '_site/build/js',
-	styles: '_site/build/css',
-	fonts: '_site/build/fonts',
-	images: '_site/build/images'
+	scripts1: '_site/build/js',
+	scripts2: 'build/js',
+	styles1: '_site/build/css',
+	styles2: 'build/css',
+	fonts1: '_site/build/fonts',
+	fonts2: 'build/fonts',
+	images1: '_site/build/images',
+	images2: 'build/images'
 };
 
 // Error Handling
@@ -87,7 +91,8 @@ gulp.task('styles', function() {
 		.on('error', handleErrors)
 		.pipe(autoprefix())
 		.pipe(rename('style.css'))
-		.pipe(gulp.dest(destPaths.styles))
+		.pipe(gulp.dest(destPaths.styles1))
+		.pipe(gulp.dest(destPaths.styles2))
 		.pipe(notify('Styles task complete!'));
 });
 
@@ -104,7 +109,8 @@ gulp.task('build-styles', function() {
 		.pipe(autoprefix({cascade:false}))
 		.pipe(minifyCSS())
 		.pipe(rename('style.css'))
-		.pipe(gulp.dest(destPaths.styles))
+		.pipe(gulp.dest(destPaths.styles1))
+		.pipe(gulp.dest(destPaths.styles2))
 		.pipe(notify('Build styles task complete!'));
 });
 
@@ -121,7 +127,8 @@ gulp.task('scripts', function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(concat('scripts.js'))
-		.pipe(gulp.dest(destPaths.scripts))
+		.pipe(gulp.dest(destPaths.scripts1))
+		.pipe(gulp.dest(destPaths.scripts2))
 		.pipe(notify('Scripts tasks complete!'));
 });
 
@@ -137,7 +144,8 @@ gulp.task('build-scripts', function() {
 		.pipe(jshint.reporter('default'))
 		.pipe(uglify())
 		.pipe(concat('scripts.js'))
-		.pipe(gulp.dest(destPaths.scripts))
+		.pipe(gulp.dest(destPaths.scripts1))
+		.pipe(gulp.dest(destPaths.scripts2))
 		.pipe(notify('Scripts tasks complete!'));
 	});
 
@@ -149,7 +157,8 @@ gulp.task('build-scripts', function() {
 gulp.task('images', function() {
 	return gulp.src(paths.images)
 		.pipe(plumber())
-		.pipe(gulp.dest(destPaths.images))
+		.pipe(gulp.dest(destPaths.images1))
+		.pipe(gulp.dest(destPaths.images2))
 		.pipe(notify('Image optimized!'));
 });
 
@@ -161,7 +170,8 @@ gulp.task('build-images', function() {
 			progressive: true,
 			interlaced: true
 		}))
-		.pipe(gulp.dest(destPaths.images))
+		.pipe(gulp.dest(destPaths.images1))
+		.pipe(gulp.dest(destPaths.images2))
 		.pipe(notify('Image optimized!'));
 });
 
@@ -203,7 +213,8 @@ gulp.task('move-fonts', function() {
 			}
 		), {base: 'bower_components'})
 	.pipe(flatten())
-	.pipe(gulp.dest(destPaths.fonts));
+	.pipe(gulp.dest(destPaths.fonts1))
+	.pipe(gulp.dest(destPaths.fonts2));
 });
 
 // Default Task
