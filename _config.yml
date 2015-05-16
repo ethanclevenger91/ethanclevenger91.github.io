@@ -45,10 +45,10 @@ url:
 # (http://yourusername.github.io/repository-name)
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
-baseurl: "http://localhost:3000"
-styleurl: "http://localhost:3000/build/css"
-scripturl: "http://localhost:3000/build/js"
-imageurl: "http://localhost:3000/build/images"
+baseurl: ""
+styleurl: "build/css"
+scripturl: "build/js"
+imageurl: "build/images"
 
 #
 # !! You don't need to change any of the configuration flags below !!
