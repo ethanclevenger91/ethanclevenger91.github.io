@@ -2,9 +2,19 @@
 // .main
 //
 
+#main {
+  padding-top:117px;
+  @include bpmax(sm) {
+    padding-top:173px;
+  }
+}
+
 .posts > .post {
   padding-bottom: 2em;
   border-bottom: 1px solid $lightGray;
+  h1 a {
+    color:$text-color;
+  }
 }
 
 .posts > .post:last-child {
@@ -42,4 +52,7 @@
 footer {
   padding: 20px 0;
   text-align: center;
+}
+.container {
+  max-width:800px;
 }

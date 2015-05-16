@@ -117,6 +117,7 @@ gulp.task('build-styles', function() {
 
 // Lint, minify, and concat our JS
 gulp.task('scripts', function() {
+	console.log(bowerFiles(['**/*.js']));
 	return gulp.src(bowerFiles(
 			['**/*.js'], 
 			{

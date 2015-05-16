@@ -3,12 +3,15 @@
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  position:fixed;
+  width:100%;
+  background:linear-gradient(to bottom, white, white 65%, transparent);
+  z-index:5;
 }
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
+  //border-bottom: 1px solid $lightGray;
 
   @include bpmax(sm) {
     text-align: center;
@@ -46,7 +49,6 @@
   margin: 0;
   color: $darkGray;
   cursor: pointer;
-  font-family: $helveticaNeue;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -65,7 +67,6 @@
 nav {
   float: right;
   margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
   font-size: 18px;
 
   @include bpmax(sm) {
@@ -77,14 +78,12 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
 
     @include bpmax(sm) {
       margin: 0 10px;
-      color: $blue;
     }
   }
 }
