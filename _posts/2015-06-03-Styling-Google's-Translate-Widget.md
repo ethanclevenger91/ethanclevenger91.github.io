@@ -3,7 +3,7 @@ layout: post
 title: Styling Google's Translate Widget
 ---
 
-It's not uncommon for a client to need a way for visitors to translate their website without rewriting all their content. Fortunately, as with most things, Google has a convinent widget for this - [the Google Website Translator](https://translate.google.com/manager/website/). This handy thing will give you some code to drop on your website, giving you a nice little dropdown like so:
+It's not uncommon for a client to need a way for visitors to translate their website without rewriting all their content. Fortunately, as with most things, Google has a convenient widget for this - [the Google Website Translator](https://translate.google.com/manager/website/). This handy thing will give you some code to drop on your website, giving you a nice little dropdown like so:
 
 <img src="{{ site.baseurl }}../build/images/6.3.15.translate.png">
 
