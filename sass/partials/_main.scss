@@ -56,3 +56,14 @@ footer {
 .container {
   max-width:800px;
 }
+.caption-image {
+  text-align:center;
+  @include remcalc(12);
+  font-style:italic;
+  color:$gray-light;
+  margin:2em 0;
+}
+img {
+  display:block;
+  margin:0 auto 1em;
+}
