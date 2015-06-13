@@ -17,7 +17,7 @@ That's all very nice, but it turns out, it isn't very mobile friendly:
 So we need to apply some custom styles to our little widget here. This is useful for any number of reasons - not just making it mobile friendly, but perhaps you want to brand it a bit or add a Nicholas Cage gif as the background or who knows, whatever.
 
 <div class="caption-image">
-	<img src="http://www.placecage.com/gif/250/250">
+	<img src="http://38.media.tumblr.com/tumblr_lxam9v6F3n1r4etbjo1_r1_500.gif">
 	Don't cry, we'll figure this out
 </div>
 
