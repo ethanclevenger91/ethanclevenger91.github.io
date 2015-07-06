@@ -43,34 +43,36 @@ Easy. But you'll probably do this a lot, so I've conveniently wrapped it into a 
 ```
 (function ( $ ) { //inline jQuery plugin to match height of elements
     $.fn.match_height = function(userOptions, callback) {
-    	var defaults = {
-    		mode:'maximum'
-    	};
-    	var options = $.extend({}, defaults, userOptions);
-		if(options.mode == 'maximum') {
-			var height=0;
-		} else {
-			var height = this.first().height();
-		}
-		this.each(function() {
-			if(options.mode == 'maximum') {
-				if($(this).height() > height) {
-					height = $(this).height();
-				}	
-			} else if(options.mode == 'minimum') {
-				if($(this).height() < height) {
-					height = $(this).height();
-				}
-			}
-		});
-		this.each(function() {
-			$(this).height(height);
-		});
-		if(typeof callback == 'function') {
-			callback.call(this);
-		}
-		return this;
-	};
+        var defaults = {
+            mode:'maximum'
+        };
+        var options = $.extend({}, defaults, userOptions);
+				var height = 0;
+        if(options.mode == 'maximum') {
+            height = 0;
+        } else {
+            height = this.first().outerHeight(false);
+        }
+        this.each(function() {
+            $(this).css('height', 'auto');
+            if(options.mode == 'maximum') {
+                if($(this).outerHeight(false) > height) {
+                    height = $(this).outerHeight(false);
+                }
+            } else if(options.mode == 'minimum') {
+                if($(this).outerHeight(false) < height) {
+                    height = $(this).outerHeight(false);
+                }
+            }
+        });
+        this.each(function() {
+            $(this).outerHeight(height);
+        });
+        if(typeof callback == 'function') {
+            callback.call(this);
+        }
+        return this;
+    };
 }( jQuery ));
 ```
 
@@ -116,7 +118,7 @@ In this specific example, is Javascript better than a pure CSS solution with a f
 			if(options.mode == 'maximum') {
 				if($(this).height() > height) {
 					height = $(this).height();
-				}	
+				}
 			} else if(options.mode == 'minimum') {
 				if($(this).height() < height) {
 					height = $(this).height();
@@ -150,6 +152,3 @@ jQuery(document).ready(function($) {
 		max-width:100%;
 	}
 </style>
-
-
-
