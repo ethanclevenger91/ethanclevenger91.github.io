@@ -15,8 +15,7 @@
   ],
   "dependencies": {
     "bootstrap-sass-official": ">=3.3.3",
-    "fontawesome": ">=4.3.0",
-    "Flowtype.js": "~1.1.0"
+    "fontawesome": ">=4.3.0"
   },
   "main": [
     "js/**/*.js",

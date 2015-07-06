@@ -17,7 +17,7 @@ That's all very nice, but it turns out, it isn't very mobile friendly:
 So we need to apply some custom styles to our little widget here. This is useful for any number of reasons - not just making it mobile friendly, but perhaps you want to brand it a bit or add a Nicholas Cage gif as the background or who knows, whatever.
 
 <div class="caption-image">
-	<img src="http://www.placecage.com/gif/250/250">
+	<img src="http://38.media.tumblr.com/tumblr_lxam9v6F3n1r4etbjo1_r1_500.gif">
 	Don't cry, we'll figure this out
 </div>
 
@@ -35,7 +35,7 @@ Basic instinct, update my site styles. To get, at minimum, mobile friendly, we'l
 }
 ```
 
-Our `iframe` is now bound to the width screen, but the menu styles aren't working. Why? The way this widget works is by creating itself in an `iframe`. Yeah, kind of odd, but it's probably been around a while. Now if this were a cross-domain `iframe`, we'd be out of luck at this point. Fortunately for us, the `iframe` doesn't have a URL at all, so we can use Javascript (read: jQuery) to get the job done by grabbing the contents of the `iframe` and styling those:
+Our `iframe` is now bound to the width of the screen, but the menu styles aren't working. Why? The way this widget works is by creating itself in an `iframe`. Yeah, kind of odd, but it's probably been around a while. Now if this were a cross-domain `iframe`, we'd be out of luck at this point. Fortunately for us, the `iframe` doesn't have a URL at all, so we can use Javascript (read: jQuery) to get the job done by grabbing the contents of the `iframe` and styling those:
 
 ```
 $('.goog-te-menu-frame').contents().find('.goog-te-menu2').css(
