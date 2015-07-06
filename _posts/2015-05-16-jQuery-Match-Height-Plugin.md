@@ -26,7 +26,7 @@ top:50%;
 transform:translateY(-50%);
 ```
 
-`top` moves the element down 50% of the height of its parent element, while the transform moves it back 50% of its own width. So I could just slap this on my images, but this won't pan out. `top` dies a hard death because my parent columns don't have assigned heights. So now what?
+`top` moves the element down 50% of the height of its parent element, while the transform moves it back 50% of its own height. So I could just slap this on my images, but this won't pan out. `top` dies a hard death because my parent columns don't have assigned heights. So now what?
 
 Let's give them heights - matching heights, in fact -
 
@@ -38,7 +38,7 @@ $('.row .col-sm-4').each(function() { //you'll want to be more specific with you
 $('.row .col-sm-4').height(height);
 ```
 
-Easy. But you'll probably do this a lot, so I've conveniently wrapped it into a chainable jQuery function. It's also got an options array that takes `mode:'min'` or `mode:'max'` if you wanted to match the smallest height, and it'll also take a callback function.
+Easy. But you'll probably do this a lot, so I've conveniently wrapped it into a chainable jQuery function. It's also got an options array that takes `mode:'minimum'` or `mode:'maximum'` if you wanted to match the smallest height, and it'll also take a callback function.
 
 ```
 (function ( $ ) { //inline jQuery plugin to match height of elements
