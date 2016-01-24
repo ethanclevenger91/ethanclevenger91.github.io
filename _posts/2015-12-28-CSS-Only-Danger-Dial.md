@@ -3,12 +3,16 @@ layout: post
 title: CSS-Only Danger Dial
 ---
 
-We're going to create a dial, 1-10, that could be used for a variety of things - danger level of animals, spiciness of peppers, whatever. Doesn't matter. We're going to do it because it's cool, and we're going to do it only with HTML, CSS and just one image for the background. Take a look:
+We're going to create a dial that could be used for a variety of things - danger level of animals, spiciness of peppers, whatever. Doesn't matter. We're going to do it because it's cool, and we're going to do it only with HTML, CSS and just one image for the background. Let's go.
+
+### The Codepen
 
 <p data-height="268" data-theme-id="11396" data-slug-hash="GooKMK" data-default-tab="result" data-user="ethanclevenger91" class='codepen'>See the Pen <a href='http://codepen.io/ethanclevenger91/pen/GooKMK/'>Dial Animation</a> by Ethan (<a href='http://codepen.io/ethanclevenger91'>@ethanclevenger91</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
 <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
 If you aren't familiar with SCSS, you're either going to want to refresh (read: _make your life easier_) or view the compiled CSS in the CodePen.
+
+### How?
 
 First off, our HTML:
 
@@ -155,7 +159,7 @@ But what if you want a fixed position? Let's set up some classes real quick. Her
 }
 ```
 
-And that's about it. Nothing too fancy here, but it's nice to not have a request to the server for every state, just the one for the background image. Depending on your background (or if you need it), you can probably do _that_ with CSS as well. _Sans_ Javascript is also nice.
+And that's about it. Nothing too fancy here, but it's nice to not have a request to the server for every state, just the one for the background image. Depending on your background (or if you need it), you can probably do _that_ with CSS as well, or a data URI `src`. _Sans_ Javascript is also nice.
 
   [1]: https://en.wikipedia.org/wiki/Quadrant_(plane_geometry)
   [2]: https://css-tricks.com/snippets/css/css-triangle/
