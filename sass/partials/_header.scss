@@ -3,10 +3,11 @@
 //
 
 .wrapper-masthead {
-  position:fixed;
+  // position:fixed;
   width:100%;
-  background:linear-gradient(to bottom, white, white 65%, transparent);
+  // background:linear-gradient(to bottom, white, white 65%, transparent);
   z-index:5;
+  padding-bottom:2em;
 }
 
 .masthead {
@@ -36,7 +37,7 @@
 }
 
 .site-info {
-  float: left;
+  text-align:center;
 
   @include bpmax(sm) {
     float: none;

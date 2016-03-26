@@ -3,18 +3,19 @@ var gulp = require('gulp');
 
 // Plugins
 var autoprefix = require('gulp-autoprefixer');
-var bowerFiles = require('main-bower-files');
-var bower = require('gulp-bower');
 var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
 var cache = require('gulp-cache');
 var cp = require('child_process');
 var del = require('del');
 var debug = require('gulp-debug');
+var filter = require('gulp-filter');
 var flatten = require('gulp-flatten');
+var fs = require('fs');
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
-var minifyCSS = require('gulp-minify-css');
+var mainBowerFiles = require('gulp-main-bower-files');
+var minifyCSS = require('gulp-clean-css');
 var notify = require('gulp-notify'); // requires Growl on Windows
 var path = require('path');
 var plumber = require('gulp-plumber');
@@ -22,12 +23,13 @@ var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
 var uglify = require('gulp-uglify');
+var sassIncl = require('sass-include-paths');
 
 // Define our paths
 var paths = {
 	scripts: 'js/**/*.js',
-	styles: 'sass/**/*.scss',
-	fonts: 'sass/fonts/**/*',
+	styles: ['style.scss', 'sass/**/*.scss'],
+	fonts: '_sass/fonts/**/*',
 	images: 'images/**/*.{png,jpg,jpeg,gif,svg}',
 	html: ['_posts/*.{html,md}', '_includes/*.{html,md}', '_layouts/*.{html,md}', '*.{html,md}'],
 	bowerDir: './bower_components'
@@ -60,33 +62,44 @@ gulp.task('jekyll', function(done) {
 		.on('close', done);
 });
 
-gulp.task('bower', function() {
-	return bower()
-		.pipe(gulp.dest(paths.bowerDir));
-});
-
 //Make any bower-installed css files scss to prevent extra requests
 gulp.task('css-to-scss', function() {
-	return bowerFiles('**/*.css').map(function(file) {
-		gulp.src(file)
-			.pipe(rename(function(path) {
-				path.basename = '_'+path.basename;
-				path.basename = path.basename.replace('.min', '');
-				path.extname = '.scss';
-			}))
-			.pipe(gulp.dest(path.dirname(file)));
+	var sassPaths = sassIncl.bowerComponentsSync();
+	return sassPaths.map(function(file) {
+		var pieces = file.split("\\");
+		var fileName = pieces.pop();
+		fileName = fileName.replace('.min', '');
+		var scssFileName = fileName.replace('.css', '.scss');
+		var underscoreTest = pieces.join('\\')+'\\_'+scssFileName;
+		var scssTest = pieces.join('\\')+'\\'+scssFileName;
+		try {
+			uStats = fs.lstatSync(underscoreTest);
+		}
+		catch(e) {
+			try {
+				sStats = fs.lstatSync(scssTest);
+			}
+			catch(e) {
+				gulp.src(file)
+					.pipe(rename(function(path) {
+						path.basename = '_'+path.basename;
+						path.basename = path.basename.replace('.min', '');
+						path.extname = '.scss';
+					}))
+					.pipe(gulp.dest(path.dirname(file)));
+			}
+		}
 	});
 });
 
 // Compile our Sass
-gulp.task('styles', function() {
+gulp.task('styles', ['css-to-scss'], function() {
+	var includePaths = sassIncl.bowerComponentsSync();
 	return gulp.src(paths.styles)
 		.pipe(plumber())
 		.pipe(sass({
-			errLogToConsole:true,
-			includePaths: bowerFiles('**/*.{scss,sass,css}').map(function(file) {
-				return path.dirname(file);
-			})
+			includePaths: includePaths,
+			errLogToConsole:true
 		}))
 		.on('error', handleErrors)
 		.pipe(autoprefix())
@@ -96,34 +109,31 @@ gulp.task('styles', function() {
 		.pipe(notify('Styles task complete!'));
 });
 
-// Compile our Sass
-gulp.task('build-styles', function() {
+gulp.task('build-styles', ['css-to-scss'], function() {
+	var includePaths = sassIncl.bowerComponentsSync();
 	return gulp.src(paths.styles)
 		.pipe(plumber())
 		.pipe(sass({
-			errLogToConsole:true,
-			includePaths:bowerFiles('**/*.{scss,sass,css}').map(function(file) {
-				return path.dirname(file);
-			})
+			includePaths: includePaths,
+			errLogToConsole:true
 		}))
+		.on('error', handleErrors)
 		.pipe(autoprefix({cascade:false}))
 		.pipe(minifyCSS())
 		.pipe(rename('style.css'))
 		.pipe(gulp.dest(destPaths.styles1))
 		.pipe(gulp.dest(destPaths.styles2))
-		.pipe(notify('Build styles task complete!'));
+		.pipe(notify('Styles task complete!'));
 });
 
-
+/**Scripts tasks not currently used**/
 // Lint, minify, and concat our JS
 gulp.task('scripts', function() {
-	return gulp.src(bowerFiles(
-			['**/*.js', '!**/jquery.js'], 
-			{
-				includeSelf:true,
-			}
-		), {base: 'bower_components'})
+	var filterJS = filter('**/*.js', { restore: true });
+	return gulp.src('.bower.json')
+		.pipe(mainBowerFiles())
 		.pipe(plumber())
+		.pipe(filterJs)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(concat('scripts.js'))
@@ -133,13 +143,11 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('build-scripts', function() {
-	return gulp.src(bowerFiles(
-			['**/*.js'], 
-			{
-				includeSelf:true
-			}
-		), {base: 'bower_components'})
+	var filterJS = filter('**/*.js', { restore: true });
+	return gulp.src('.bower.json')
+		.pipe(mainBowerFiles())
 		.pipe(plumber())
+		.pipe(filterJs)
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(uglify())
@@ -198,7 +206,7 @@ gulp.task('browser-sync', function () {
 
 gulp.task('clean', function(cb) {
 	//return gulp.src('build').pipe(clean());
-	del(['build'], cb);
+	del(['build']).then(cb());
 });
 
 gulp.task('clear-cache', function() {
@@ -206,23 +214,21 @@ gulp.task('clear-cache', function() {
 });
 
 gulp.task('move-fonts', function() {
-	return gulp.src(bowerFiles(
-			['**/*.eot', '**/*.woff', '**/*.woff2', '**/*.svg', '**/*.ttf'], 
-			{
-				includeSelf:true
-			}
-		), {base: 'bower_components'})
-	.pipe(flatten())
-	.pipe(gulp.dest(destPaths.fonts1))
-	.pipe(gulp.dest(destPaths.fonts2));
+	var filterFonts = filter('**/*.{eot,woff,woff2,svg,tff}', { restore: true });
+	return gulp.src('.bower.json')
+		.pipe(mainBowerFiles())
+		.pipe(filterFonts)
+		.pipe(flatten())
+		.pipe(gulp.dest(destPaths.fonts1))
+		.pipe(gulp.dest(destPaths.fonts2));
 });
 
 // Default Task
 gulp.task('default', function(cb) {
-	runSequence('jekyll', 'css-to-scss', 'clean', 'clear-cache' ,'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
+	runSequence('jekyll', 'clean', 'clear-cache' ,'images', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
 });
 
 // Build Task
 gulp.task('build', function(cb) {
-	runSequence('jekyll', 'css-to-scss', 'clean', 'clear-cache', 'build-images', 'build-scripts', 'build-styles', 'move-fonts', cb);
+	runSequence('jekyll', 'clean', 'clear-cache', 'build-images', 'build-styles', 'move-fonts', cb);
 });

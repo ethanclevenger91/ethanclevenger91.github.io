@@ -2,17 +2,10 @@
 // .main
 //
 
-#main {
-  padding-top:117px;
-  @include bpmax(sm) {
-    padding-top:173px;
-  }
-}
-
 .posts > .post {
   padding-bottom: 2em;
-  border-bottom: 1px solid $lightGray;
-  h1 a {
+  // border-bottom: 1px solid $lightGray;
+  h2 a {
     color:$text-color;
   }
 }
@@ -37,7 +30,7 @@
   }
 
   .read-more {
-    text-transform: uppercase;
+    text-transform: smallcaps;
     font-size: 15px;
   }
 }
@@ -53,9 +46,7 @@ footer {
   padding: 20px 0;
   text-align: center;
 }
-.container {
-  max-width:800px;
-}
+
 .caption-image {
   text-align:center;
   @include remcalc(12);
@@ -66,4 +57,16 @@ footer {
 img {
   display:block;
   margin:0 auto 1em;
+}
+article {
+  max-width:700px;
+  margin:0 auto;
+  line-height:1.7;
+}
+#disqus_thread {
+  margin-top:3em;
+}
+.date {
+  @include remcalc(14);
+  margin:1em 0;
 }

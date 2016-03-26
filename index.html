@@ -6,7 +6,7 @@ layout: default
   {% for post in site.posts %}
     <article class="post">
 
-      <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
+      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
 
       <div class="entry">
         {{ post.excerpt }}
@@ -15,4 +15,29 @@ layout: default
       <a href="{{ site.baseurl }}{{ post.url }}" class="read-more">Read More</a>
     </article>
   {% endfor %}
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      I'm Ethan Clevenger. I make things with the internet. Here you'll find tutorials, musings and such.
+
+      <h3>My Projects</h3>
+      <ul>
+        <li><a href="http://beerpilgrimage.com" target="_blank">beerPilgrimage</a></li>
+        <li><a href="http://findingtheforest.com" target="_blank">Finding the Forest</a></li>
+        <li><a href="http://ethanclevenger91.github.io/hide-gannett-prompt" target="_blank">Hide Gannett Surveys</a></li>
+      </ul>
+
+      <h3>My Talks</h3>
+
+      <ul>
+        <li><a href="http://ethanclevenger.github.io/wordpress-transients" target="_blank">WordPress Transients</a></li>
+      </ul>
+
+      <h3>Contact me</h3>
+
+        <ul><li><a href="mailto:ethan.c.clevenger@gmail.com">ethan.c.clevenger@gmail.com</a></li></ul>
+    </div>
+  </div>
 </div>
