@@ -4,6 +4,7 @@ title: Inlining Your Styles for Email
 technologies:
   - title: PHP
     link: https://www.codecademy.com/learn/php
+excerpt: Gmail and other email clients have a variety of quirks, including requiring inline styles. Here's a way to automate style injection.
 ---
 
 If you've ever written markup for emails, you know it's nothing like writing markup for the browser. Mail clients are full of little quirks regarding what they will and won't support. One particularly sticky issue is various email clients that don't support `<style>` tags. I've got a solution.

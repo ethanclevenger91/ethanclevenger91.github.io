@@ -1,6 +1,10 @@
 ---
 layout: post
 title: Styling Google's Translate Widget
+excerpt: Google's website translate widget is pretty opinionated about its styles and is anything but responsive. Here's a way to fix that.
+technologies:
+  - title: jQuery
+    link: https://www.codecademy.com/learn/jquery
 ---
 
 It's not uncommon for a client to need a way for visitors to translate their website without rewriting all their content. Fortunately, as with most things, Google has a convenient widget for this - [the Google Website Translator](https://translate.google.com/manager/website/). This handy thing will give you some code to drop on your website, giving you a nice little dropdown like so:

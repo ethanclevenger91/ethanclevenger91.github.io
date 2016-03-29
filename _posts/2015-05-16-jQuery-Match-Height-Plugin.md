@@ -1,6 +1,12 @@
 ---
 layout: post
 title: jQuery Match Height Plugin
+excerpt: When flexbox isn't an option, here's a jQuery plugin for making sure that elements in a row get the same height.
+technologies:
+  - title: jQuery
+    link: https://www.codecademy.com/learn/jquery
+  - title: CSS
+    link: https://www.codecademy.com/learn/web
 ---
 
 Let's say I have several Boostrap columns side by side that contain images of varying height. I want these images to appear `vertical-align:middle` with each other. Of course, this can only really be achieved if our columns have `display:inline-block`, but if you know anything about Bootstrap, you know our columns are floated. Inline-block display introduces several issues with whitespace in your HTML - if you remove the float and make them inline-block, the last one will wrap unless you do something goofy like this with your markup:
@@ -26,7 +32,7 @@ top:50%;
 transform:translateY(-50%);
 ```
 
-`top` moves the element down 50% of the height of its parent element, while the transform moves it back 50% of its own height. So I could just slap this on my images, but this won't pan out. `top` dies a hard death because my parent columns don't have assigned heights. So now what?
+`top` moves the element down 50% of the height of its parent element, while the transform moves it back 50% of its own height. So I could just slap this on my images, but it won't pan out. `top` dies a hard death because my parent columns don't have assigned heights. So now what?
 
 Let's give them heights - matching heights, in fact -
 
@@ -86,7 +92,7 @@ $(window).load(function() {
 
 Be sure to do it in `$(window).load()` or things like images won't get calculated in the height. In action:
 
-<div class="container example">
+<div id="example_0">
 	<div class="row">
 		<div class="col-sm-4 fill-murray-column">
 			<img src="http://fillmurray.com/300/300">
@@ -101,6 +107,8 @@ Be sure to do it in `$(window).load()` or things like images won't get calculate
 </div>
 
 In this specific example, is Javascript better than a pure CSS solution with a funky font-size hack? Maybe not. But there are other situations where it _is_ ideal, so keep it in your back pocket.
+
+<script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
 
 <script>
 (function ( $ ) { //inline jQuery plugin to match height of elements
@@ -138,19 +146,20 @@ In this specific example, is Javascript better than a pure CSS solution with a f
 }( jQuery ));
 jQuery(document).ready(function($) {
 	$(window).load(function() {
-		$('.example .fill-murray-column').match_height().css('background', 'orange');
+		$('#example_0 .fill-murray-column').match_height().find('img').css({
+			background: 'orange',
+			position: 'relative',
+			top: '50%',
+			transform: 'translateY(-50%)',
+			'-webkit-transform': 'translateY(-50%)',
+			'max-width': '100%'
+		});
 	});
 });
 </script>
 <style>
-	.example {
+	#example_0 {
 		margin:20px 0;
-	}
-	.example .fill-murray-column img {
-		position:relative;
-		top:50%;
-		transform:translateY(-50%);
-		-webkit-transform:translateY(-50%);
-		max-width:100%;
+		background:orange;
 	}
 </style>

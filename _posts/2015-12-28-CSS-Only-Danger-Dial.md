@@ -6,6 +6,7 @@ technologies:
     link: https://www.codecademy.com/learn/web
   - title: SCSS
     link: http://sass-lang.com/guide
+excerpt: This is an animated CSS-only dial that has a variety of applications, including monitoring progress toward a goal or registering the danger of something.
 ---
 
 We're going to create a dial that could be used for a variety of things - danger level of animals, spiciness of peppers, whatever. Doesn't matter. We're going to do it because it's cool, and we're going to do it only with HTML, CSS and just one image for the background. Let's go.
