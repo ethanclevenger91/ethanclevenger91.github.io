@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Filter Bug Turns SVGs Invisible on iDevice Browsers
+title: Filter Bug Turns SVGs Invisible on iOS Browsers
 technologies:
   - title: CSS
     link: https://www.codecademy.com/learn/css
