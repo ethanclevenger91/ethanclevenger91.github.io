@@ -4,19 +4,21 @@ title: About
 permalink: /about/
 ---
 
-Hey, I'm Ethan Clevenger. I’m a web developer in Des Moines, IA, currently working at [Webspec Design](http://www.webspecdesign.com). I graduated from Drake University in 2014 with a degree in computer science, so I've at least played with a lot of languages and technologies - PHP, HTML, CSS, Javascript + jQuery, Java, C++, Objective-C, Android...
+I'm Ethan Clevenger. I make things with the internet. Here you'll find tutorials, musings and such.
 
-This is my blog, where you'll largely see articles related to the stuff I do at work - web, WordPress, Yii. You'll also see my love for build tools and package managers creep out. Check back often.
+<h3>My Projects</h3>
+<ul>
+  <li><a href="http://beerpilgrimage.com" target="_blank">beerPilgrimage</a></li>
+  <li><a href="http://findingtheforest.com" target="_blank">Finding the Forest</a></li>
+  <li><a href="http://ethanclevenger.com/hide-gannett-prompt" target="_blank">Hide Gannett Surveys</a></li>
+</ul>
 
-### My Projects
+<h3>My Talks</h3>
 
-- [beerPilgrimage](http://beerpilgrimage.com)
-- [Hide Gannett Surveys](http://ethanclevenger91.github.io/hide-gannett-prompt)
+<ul>
+  <li><a href="http://ethanclevenger.com/wordpress-transients" target="_blank">WordPress Transients</a></li>
+</ul>
 
-### My Talks
+<h3>Contact me</h3>
 
-- [WordPress Transients](http://ethanclevenger91.github.io/wordpress-transients)
-
-### Contact me
-
-[ethan.c.clevenger@gmail.com](mailto:ethan.c.clevenger@gmail.com)
+  <ul><li><a href="mailto:ethan.c.clevenger@gmail.com">ethan.c.clevenger@gmail.com</a></li></ul>
